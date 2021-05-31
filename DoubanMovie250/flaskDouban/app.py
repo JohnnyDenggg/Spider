@@ -12,7 +12,7 @@ app = Flask(__name__)
 
 @app.route('/')
 def index():
-    return render_template('index.html')
+    return render_template('index .html')
 
 
 @app.route('/index')
@@ -49,18 +49,6 @@ def score():
 
 @app.route('/word')
 def word():
-    conn = sqlite3.connect('movie250.db')
-    cur = conn.cursor()
-    sql = "select introduction from movie250"
-    data = cur.execute(sql)
-    text = ""
-    for item in data:
-        text = text + item[0]
-    print(text)  # 词云所需的数据
-    cut = jieba.cut(text)
-
-    cur.close()
-    conn.close()
     return render_template('word.html')
 
 @app.route('/team')
