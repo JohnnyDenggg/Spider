@@ -7,10 +7,8 @@
 
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
-
-		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/4.5.6/css/ionicons.min.css">
-
     <link rel="stylesheet" href="static/css/animate.css">
     <link rel="stylesheet" href="static/css/flaticon.css">
     <link rel="stylesheet" href="static/css/tiny-slider.css">
@@ -18,8 +16,10 @@
     <link rel="stylesheet" href="static/css/aos.css">
     <link rel="stylesheet" href="static/css/datepicker.min.css">
     <link rel="stylesheet" href="static/css/style.css">
+    <script type="text/javascript" src="http://cdn.static.runoob.com/libs/jquery/1.10.2/jquery.min.js"></script>
   </head>
   <body>
+
     <!--     导航-->
     <nav class="navbar navbar-expand-lg  ftco-navbar-light">
 		  <div class="container-xl">
@@ -47,47 +47,45 @@
         <div class="row justify-content-center pb-4">
           <div class="col-lg-7 text-center heading-section" data-aos="fade-up" data-aos-duration="1000">
             <span class="subheading">应用爬虫、Flask等技术实现</span>
-            <h2 class="mb-5">豆瓣电影Top250</h2>
+            <h2 class="mb-5">豆瓣电影Top250评分分布图</h2>
           </div>
         </div>
         <div class="row">
-          <div class="col-sm-6 col-md-6 col-lg-3 d-flex align-items-stretch">
-            <a href="/movie">
-            <div class="counter-wrap-2" data-aos="fade-up" data-aos-delay="100" data-aos-duration="1000">
-              <h2 class="number"><span class="countup">250</span></h2>
-              <span class="caption">经典电影</span>
-            </div>
-            </a>
-          </div>
-          <div class="col-sm-6 col-md-6 col-lg-3 d-flex align-items-stretch">
-            <a href="/score">
-            <div class="counter-wrap-2" data-aos="fade-up" data-aos-delay="200" data-aos-duration="1000">
-              <h2 class="number"><span class="countup">9200</span></h2>
-              <span class="caption">评分统计</span>
-            </div>
-            </a>
-          </div>
-          <div class="col-sm-6 col-md-6 col-lg-3 d-flex align-items-stretch">
-            <a href="/word">
-            <div class="counter-wrap-2" data-aos="fade-up" data-aos-delay="300" data-aos-duration="1000">
-              <h2 class="number"><span class="countup">5800</span></h2>
-              <span class="caption">词汇统计</span>
-            </div>
-            </a>
-          </div>
-          <div class="col-sm-6 col-md-6 col-lg-3 d-flex align-items-stretch">
-            <a href="/team">
-            <div class="counter-wrap-2" data-aos="fade-up" data-aos-delay="400" data-aos-duration="1000">
-              <h2 class="number"><span class="countup">100</span></h2>
-              <span class="caption">团队成员</span>
-            </div>
-            </a>
-          </div>
+          <!-- 为ECharts准备一个具备大小（宽高）的Dom -->
+            <div id="main" style="width: 600px;height:400px;"></div>
+            <script type="text/javascript">
+                // 基于准备好的dom，初始化echarts实例
+                var myChart = echarts.init(document.getElementById('main'));
+
+                // 指定图表的配置项和数据
+                var option = {
+                    title: {
+                        text: 'ECharts 入门示例'
+                    },
+                    tooltip: {},
+                    legend: {
+                        data:['销量']
+                    },
+                    xAxis: {
+                        data: ["衬衫","羊毛衫","雪纺衫","裤子","高跟鞋","袜子"]
+                    },
+                    yAxis: {},
+                    series: [{
+                        name: '销量',
+                        type: 'bar',
+                        data: [5, 20, 36, 10, 10, 20]
+                    }]
+                };
+
+                // 使用刚指定的配置项和数据显示图表。
+                myChart.setOption(option);
+            </script>
 
 
         </div>
       </div>
     </section>
+
 
 
 
@@ -105,7 +103,8 @@
       </div>
     </footer>
 
-    
+
+
   <script src="static/js/bootstrap.bundle.min.js"></script>
   <script src="static/js/tiny-slider.js"></script>
   <script src="static/js/glightbox.min.js"></script>
@@ -114,6 +113,6 @@
   <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBVWaKrjvy3MaE7SQ74_uJiULgl1JY0H2s&sensor=false"></script>
   <script src="static/js/google-map.js"></script>
   <script src="static/js/main.js"></script>
-    
+
   </body>
 </html>
