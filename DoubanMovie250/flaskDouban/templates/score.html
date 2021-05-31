@@ -4,7 +4,7 @@
     <title>豆瓣电影250</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <script src="static/js/echarts.min.js"></script>
+    <script src="static/echarts.min.js"></script>
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -51,8 +51,8 @@
         </div>
         <div class="row">
           <!-- 为ECharts准备一个具备大小（宽高）的Dom -->
-            <div id="main" style="width: 600px;height:400px;"></div>
-                      <script type="text/javascript">
+            <div id="main" style="width: 100%;height:350px;"></div>
+            <script type="text/javascript">
                     // 基于准备好的dom，初始化echarts实例
                     var myChart = echarts.init(document.getElementById('main'));
 
@@ -66,13 +66,13 @@
                             data:['销量']
                         },
                         xAxis: {
-                            data: ["衬衫","羊毛衫","雪纺衫","裤子","高跟鞋","袜子"]
+                            data: {{ score }}
                         },
                         yAxis: {},
                         series: [{
                             name: '销量',
                             type: 'bar',
-                            data: [5, 20, 36, 10, 10, 20]
+                            data: {{ num }}
                         }]
                     };
 
