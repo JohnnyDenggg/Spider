@@ -4,13 +4,21 @@ from PyQt5.QtWidgets import QWidget,QLabel,QApplication,QFormLayout
 from PyQt5.QtCore import QTimer,Qt,QPoint
 from PyQt5.QtGui import QMouseEvent,QIcon
 
+qss = '''
+
+QLabel {
+    color:white;
+    
+}
+'''
+
 class mainWindow(QWidget):
     _startPos = None
     _endPos = None
     _isTracking = False
     def __init__(self,parent=None):
         super(mainWindow,self).__init__(parent)
-        self.setFixedSize(85,50)
+        self.setFixedSize(100,50)
         self.setWindowFlag(Qt.FramelessWindowHint)  # 无边框
         self.setWindowFlag(Qt.WindowStaysOnTopHint)  # 窗口置顶
         self.setAttribute(Qt.WA_TranslucentBackground)  # 设置窗口背景透明
@@ -63,15 +71,16 @@ class mainWindow(QWidget):
         datas = datas["data"]  # 获取数据列表
 
 
-        self.labeldirection.setText(str(datas[0]["data"][0]["direction"])[0:1])
+        self.labeldirection.setText(str(datas[0]["data"][0]["direction"])[0:1] + ':')
         self.labelprice.setText(str(datas[0]["data"][0]["price"]))
-        self.labeldirection2.setText(str(datas[1]["data"][0]["direction"])[0:1])
+        self.labeldirection2.setText(str(datas[1]["data"][0]["direction"])[0:1] + ':')
         self.labelprice2.setText(str(datas[1]["data"][0]["price"]))
 
 
 
 if __name__ == '__main__':
     app = QApplication(sys.argv)
+    app.setStyleSheet(qss)
     window = mainWindow()
     window.show()
     sys.exit(app.exec_())
