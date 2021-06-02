@@ -1,4 +1,5 @@
 import sys
+import sqlite3
 import requests
 from PyQt5.QtWidgets import QWidget, QLabel, QApplication, QFormLayout,QDialog,QComboBox,QTextEdit,QMenu,QAction,QDialogButtonBox,QLineEdit,QMessageBox
 from PyQt5.QtCore import QTimer, Qt, QPoint
@@ -8,6 +9,8 @@ from settingDialog import dialog
 
 '''
 传入时间问题，不要每秒传一次时间
+开始读取db里数据，依次检查，都有才开启timer
+开始select找数据，判断，找不到数据，弹窗：请设置
 '''
 
 
