@@ -6,7 +6,7 @@ import sqlite3
 
 
 def getData():
-    coin=highPrice=lowPrice=enterpriseId=agentId=secret = ''
+    # coin=highPrice=lowPrice=enterpriseId=agentId=secret = ''
     conn = sqlite3.connect('huobi.db')
     cur = conn.cursor()
     sql1 = '''
@@ -25,16 +25,15 @@ def getData():
         select * from huobi
     '''
     sql4 = '''
-        select count(*) from huobi
+        select count(*) as aaa from huobi
     '''
     cur.execute(sql1)
     # cur.execute(sql2)
     cur.execute(sql3)
-    a = len(list(cur))
-    print(a)
-    if a == 0:
-        print('空')
+    if len(list(cur)) != 1:
+        print('没有数据')
     else:
+        cur.execute(sql3)
         for row in cur:
             coin=row[1]
             highPrice=row[2]
@@ -42,11 +41,29 @@ def getData():
             enterpriseId=row[4]
             agentId=row[5]
             secret=row[6]
-            print(coin,highPrice,lowPrice,enterpriseId,agentId,secret)
+            # print(coin,highPrice,lowPrice,enterpriseId,agentId,secret)
+    # conn.commit()
+    cur.close()
+    conn.close()
     return coin,highPrice,lowPrice,enterpriseId,agentId,secret
+
+# getData()
+# coin,highPrice,lowPrice,enterpriseId,agentId,secret = getData()
+# print(coin,highPrice,lowPrice,enterpriseId,agentId,secret)
+
+def insertData():
+    aa = '111'
+    bb = '222'
+    cc = '444'
+    conn = sqlite3.connect('huobi.db')
+    cur = conn.cursor()
+    sql2 = '''
+            REPLACE INTO huobi (id,coin,highPrice,lowPrice,enterpriseId,agentId,secret) values (1,"dogeusdt","111","0.1",?,?,?);
+        '''
+    cur.execute(sql2,(aa,bb,cc))
+    # cur.execute('REPLACE INTO huobi (id,coin,highPrice,lowPrice,enterpriseId,agentId,secret) values (1,"dogeusdt","111","0.1",?,?,?)',(aa,bb,cc))
+    conn.commit()
     cur.close()
     conn.close()
 
-getData()
-# coin,highPrice,lowPrice,enterpriseId,agentId,secret = getData()
-# print(coin,highPrice,lowPrice,enterpriseId,agentId,secret)
+insertData()
